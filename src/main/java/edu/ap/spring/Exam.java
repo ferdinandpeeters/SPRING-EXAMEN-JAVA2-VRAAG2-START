@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 @Component
 public class Exam {
@@ -47,11 +48,11 @@ public class Exam {
 	// zijn aan twee
 	// 2 punten
 	public String getXOverTwo(List<Point> points) {
-		int[] output =  points.stream()
+		return  points.stream()
 				.map(x -> x.getX())
 				.mapToInt(Double::intValue)
 				.filter(x -> x >= 2)
-				.toArray();
-		return StringUtils.join(output)
+		        .mapToObj(String::valueOf)
+		        .collect(Collectors.joining(", "));
 	}
 }
