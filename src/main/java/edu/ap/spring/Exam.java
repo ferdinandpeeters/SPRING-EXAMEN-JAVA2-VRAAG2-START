@@ -26,8 +26,10 @@ public class Exam {
 	// te tellen in de gegeven string
 	// 1 punt
 	public int countLowercaseCharacters(String string) {
-		System.out.println("test");
-		string.chars().stream()
+		return (int) string.chars()
+			.mapToObj(i -> (char)i)
+			.filter(x -> Character.isLowerCase(x))
+			.count();
 	}
 	
 	// Maak gebruik van lambdas en streams om de som van alle
@@ -45,6 +47,11 @@ public class Exam {
 	// zijn aan twee
 	// 2 punten
 	public String getXOverTwo(List<Point> points) {
-		return "hello";
+		int[] output =  points.stream()
+				.map(x -> x.getX())
+				.mapToInt(Double::intValue)
+				.filter(x -> x >= 2)
+				.toArray();
+		return StringUtils.join(output)
 	}
 }
